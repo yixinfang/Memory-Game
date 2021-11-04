@@ -1,0 +1,85 @@
+Memory_Matching_Game
+Yixin Fang
+
+Introduction and Summary of Function & Class in this Project
+
+initial_setup()
+    Turtle drawing the play area, status area & leader board.
+    
+initAllImages(total_image = 12):
+    This function aims to place the desinated number of card backs.
+    total_image depends on player's input, default as 12. Define an area
+    and assign the card via column/row system (transformed from x,y coordinates)
+    Load back cards into the screen and display them via turtle
+      
+displaySingleCard(id, x, y):
+    small function designed for displaying cards, can be easily called in the
+    other functions.
+
+storeCards(total_image, card_list)"
+    Function: store the face of cards into the screen, not shown yet, just "hide"
+    method: similar to the method for loading back cards, assigned via column/row
+    system (x/y transformed)
+    argument: total_image(how many cards for playing),
+              card_list(originally 7 deck cards were provide, can choose some of them,
+              creat a short list, then list*2(doublified),randomly shuffled. For example,
+              if 10 cards were asked for game, take 5 of the 7 cards and double into 10
+              cards. Help function: shuffle(cards)
+status_board(flag, result): turtle function, to write the result of guess or score
+                        in the status area.
+    
+     
+on_click(x, y): this function designed to convert the pixel x&y from every click
+                into the row/col grid. Also, detailed disscussion about clicking
+                on cards/ on padding / out of main block were also presented.
+                img_id(aka, the id for each card) was simply presented via row/col
+                grid.
+update(): key function. To achieve the matching, the file names were used to "matching"
+          since the card list used in play was originated from doubling the a short
+          slice. If two clicks(last_click and second_last_click) were equal, they were
+          removed via removing stamping(flipping movement).
+class CardClick:
+          attributes: x, y, img_id, filename
+          method:
+                __eq__ : used in the update()(aka, matching)
+                __str__: returns the id of center card with its filename
+                displayCard(self)
+                displayBack(self)
+                        these two methods returns cards' stamps for the use of
+                        deleting if matching.
+                deleteStamps:
+                        remove the matching cards via deleting their stamps.
+
+class Players:
+    attribute:name, total_image, guess, is_quitted, total_guess, right_guess,
+                        global_dictionary, back_card_stamps, last_click, second_last_click
+    methods:
+            __init__
+            bad_init
+            __eq__
+            __str__
+            score : notice:I use the ratio of correctness to compare 
+
+To test 8/10/12 cards:
+    when total_img = 8: 4 cards in a row (col: 4), 2 rows total
+    when total_img = 10: 4 cards in a row (col: 4), 2.5 rows total
+    when total_img = 12: 4 cards in a row (col: 4), 3 rows total.
+
+When testing the game is work,
+        after each round, close the turtle screen, you would find a leader_board.txt
+        which recorded every player's score.
+To test different of files, including directly reading images from the same file,
+as well as reading a configuration file with images' file names.
+            
+                        
+        
+                    
+    
+
+        
+
+        
+
+    
+
+    
